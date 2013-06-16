@@ -3,6 +3,7 @@ CREATE DATABASE UrgenceInfo;
 
 CREATE TABLE individu(
 num_id_indiv INT NOT NULL AUTO_INCREMENT, 
+login VARCHAR(16)NOT NULL UNIQUE,
 nom VARCHAR(16) NOT NULL, 
 prenom VARCHAR(16) NOT NULL, 
 date_naissance DATE NOT NULL, 
@@ -95,9 +96,15 @@ FOREIGN KEY (num_id_memb_perso) REFERENCES membre_personnel(num_id_memb_perso),
 FOREIGN KEY (num_id_mat) REFERENCES materiel(num_id_mat)
 );
 
+CREATE TABLE codes_membres(
+code_membre INT NOT NULL,
+droits ENUM('membre','admin') NOT NULL,
+PRIMARY KEY (code_membre)
+);
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO individu VALUES('','MORANE','Bob','1983-10-10','12 rue des camélias','0643682238','Bob.MORANE@gmail.com','indochine');
+INSERT INTO individu VALUES('','SamuraiDuSoleil','MORANE','Bob','1983-10-10','12 rue des camélias','0643682238','Bob.MORANE@gmail.com','indochine');
 
 INSERT INTO membre_personnel VALUES('1','technicien','ordiFixe,imprim','oui');
 
@@ -105,7 +112,6 @@ INSERT INTO client VALUES('1',null,'oui');
 
 INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée','clos');
 INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée','non_traite');
-
 
 INSERT INTO materiel VALUES('','ordiFixe','TOSHIBA','X200','Obsolète');
 INSERT INTO materiel VALUES('','ordiFixe','TOSHIBA','X300','Obsolète');

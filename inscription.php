@@ -1,6 +1,10 @@
-     <form method="post" action="inscription_sql.php">
+     <form method="post" action="inscription2.php">
 	    <fieldset>
 		 <legend>Vos informations personnelles</legend>
+		 <label for="prenom">Votre login: </label>
+	     <input type="text" name="login"  value="hodor"size="8"/>
+		 
+		 <br/>
 		 
 		 <label for="nom">Votre nom: </label>
 	     <input type="text" name="nom" value="hodor" size="8"/>
@@ -42,7 +46,12 @@
 		 
 		 <br/>
 		 
-	     <input type="submit" name="Valider" value="Valider"/>
+		 <label for="status">Vous êtes: </label>
+	     <input type="checkbox" name="status[membre]"  value="membre" /> Membre du personnel
+		 <input type="checkbox" name="status[client]"  value="client" /> Client
+		 <br/>
+		 
+	     <input type="submit" name="Valider" value="Continuer"/>
 		 
 		</fieldset>
 	  </form>

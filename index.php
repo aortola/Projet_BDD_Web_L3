@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['nom'])){
+if(!isset($_SESSION['login'])){
 	echo "Vous n'êtes pas identifié!";
 }else{
-	echo "Bonjour ".$_SESSION['nom'];
+	echo "Bonjour ".$_SESSION['login'];
 }
 ?>
    
@@ -17,10 +17,23 @@ if(!isset($_SESSION['nom'])){
     <link rel="stylesheet" type="text/css" href="" />
   </head>
   <body>
-   <?php
-			
+   <?php	
 		  include_once('en-tete.php');
-  
+		  
+		  if(isset($_SESSION['droits'])){
+			if(isset($_SESSION['droits']['client'])){
+				include_once('options_client.php');
+			}
+			if(isset($_SESSION['droits']['membre'])){
+				include_once('options_membre.php');
+			}else{
+				if(isset($_SESSION['droits']['admin'])){
+					include_once('options_membre.php');
+					include_once('options_admin.php');
+				}
+			}
+		  }
+
           if(!isset($_GET['section']))
           {
 		  //on verra
