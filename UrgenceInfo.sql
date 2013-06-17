@@ -1,5 +1,6 @@
 
 CREATE DATABASE UrgenceInfo;
+USE UrgenceInfo;
 
 CREATE TABLE individu(
 num_id_indiv INT NOT NULL AUTO_INCREMENT, 
@@ -127,8 +128,11 @@ INSERT INTO client_signe_contrat VALUES('1','1');
 
 INSERT INTO intervention VALUES('1','1','1','Surchauffe interne -> Changement carte mère + ventilo','00:20:40','intermediaire');
 
+INSERT INTO codes_membres VALUES('1','membre');
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-SELECT * FROM materiel m 
-WHERE m.num_id_mat NOT IN(SELECT i.num_id_mat FROM intervention i) 
-AND m.num_id_mat IN (SELECT j.num_id_mat FROM incident_survenu_sur_materiel j);
+SELECT s.num_id_mat, type_mat, nom_mat, modele_mat, commentaire_mat, s.num_id_incid, type_incid, date_heure_incid, descrip_incid, etat_incid
+FROM materiel m, incident c, incident_survenu_sur_materiel s 
+WHERE s.num_id_incid NOT IN(SELECT i.num_id_incid FROM intervention i) 
+AND s.num_id_mat=m.num_id_mat
+AND s.num_id_incid=c.num_id_incid;

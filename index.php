@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once('connexion_sql.php');
 if(!isset($_SESSION['login'])){
 	echo "Vous n'êtes pas identifié!";
 }else{
