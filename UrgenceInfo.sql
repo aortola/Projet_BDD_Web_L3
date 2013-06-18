@@ -37,7 +37,6 @@ num_id_incid INT NOT NULL AUTO_INCREMENT,
 type_incid ENUM('defaillance_meca','defaillance_log','defaillance_electro') NOT NULL,
 date_heure_incid DATETIME,
 descrip_incid VARCHAR(240),
-etat_incid ENUM('clos','en_cours','non_traite'),
 PRIMARY KEY (num_id_incid)
 );
 
@@ -53,6 +52,7 @@ PRIMARY KEY (num_id_mat)
 CREATE TABLE incident_survenu_sur_materiel(
 num_id_mat INT NOT NULL,
 num_id_incid INT NOT NULL,
+etat_incid ENUM('clos','en_cours','non_traite'),
 PRIMARY KEY (num_id_incid, num_id_mat),
 FOREIGN KEY (num_id_incid) REFERENCES incident(num_id_incid),
 FOREIGN KEY (num_id_mat) REFERENCES materiel(num_id_mat)
@@ -111,14 +111,14 @@ INSERT INTO membre_personnel VALUES('1','technicien','ordiFixe,imprim','oui');
 
 INSERT INTO client VALUES('1',null,'oui');
 
-INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée','clos');
-INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée','non_traite');
+INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée');
+INSERT INTO incident VALUES('','defaillance_meca','2013-04-22 22:00:42','La carte mère est brûlée');
 
 INSERT INTO materiel VALUES('','ordiFixe','TOSHIBA','X200','Obsolète');
 INSERT INTO materiel VALUES('','ordiFixe','TOSHIBA','X300','Obsolète');
 
-INSERT INTO incident_survenu_sur_materiel VALUES('1','1');
-INSERT INTO incident_survenu_sur_materiel VALUES('2','2');
+INSERT INTO incident_survenu_sur_materiel VALUES('1','1','clos');
+INSERT INTO incident_survenu_sur_materiel VALUES('2','2','non_traite');
 
 INSERT INTO contrat VALUES('','2013-04-21',null,'actif',null,'15000.57');
 

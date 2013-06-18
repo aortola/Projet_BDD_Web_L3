@@ -19,24 +19,23 @@ if(!isset($_SESSION['login'])){
   <body>
    <?php	
 		  include_once('en-tete.php');
-		  
 		  if(isset($_SESSION['droits'])){
-			if(isset($_SESSION['droits']['client'])){
-				include_once('options_client.php');
-			}
-			if(isset($_SESSION['droits']['membre'])){
-				include_once('options_membre.php');
-			}else{
-				if(isset($_SESSION['droits']['admin'])){
+				if(isset($_SESSION['droits']['client'])){
+					include_once('options_client.php');
+				}
+				if(isset($_SESSION['droits']['membre'])){
 					include_once('options_membre.php');
-					include_once('options_admin.php');
+				}else{
+					if(isset($_SESSION['droits']['admin'])){
+						include_once('options_membre.php');
+						include_once('options_admin.php');
+					}
 				}
 			}
-		  }
 
           if(!isset($_GET['section']))
           {
-		  //on verra
+			
           }
           else
           {
