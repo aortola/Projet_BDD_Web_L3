@@ -98,7 +98,7 @@ FOREIGN KEY (num_id_mat) REFERENCES materiel(num_id_mat)
 );
 
 CREATE TABLE codes_membres(
-code_membre INT NOT NULL,
+code_membre VARCHAR(13) NOT NULL,
 droits ENUM('membre','admin') NOT NULL,
 PRIMARY KEY (code_membre)
 );
