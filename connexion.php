@@ -10,6 +10,14 @@
 	
 		$_SESSION['login']=strip_tags($_POST['login']);
 		$_SESSION['num_id_indiv']=$donnees['num_id_indiv'];
+		
+		$reponse_client = $bdd->prepare('SELECT * FROM client WHERE num_id_cli = ?') or die(print_r($bdd->errorInfo()));
+		$reponse_client->execute(array($donnees['num_id_indiv']));
+		if($donnees_cli = $reponse_client->fetch()){	
+			$_SESSION['droits']['client']='client';
+		}
+		
+		
 		$reponse_membre = $bdd->prepare('SELECT * FROM membre_personnel WHERE num_id_memb_perso = ?') or die(print_r($bdd->errorInfo()));
 		$reponse_membre->execute(array($donnees['num_id_indiv']));
 		
@@ -20,8 +28,6 @@
 				}else{
 					$_SESSION['droits']['admin']='admin';
 				}
-			}else{
-				$_SESSION['droits']['client']='client';
 			}
 		}
     }
