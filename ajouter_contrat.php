@@ -5,10 +5,12 @@
 		include_once('connexion_sql.php');
 		$reponse= $bdd->prepare('
 							SELECT m.num_id_mat, m.type_mat, m.modele_mat, m.nom_mat, m.commentaire_mat
-							FROM materiel m
+							FROM materiel m, client_possede_materiel p
+							WHERE p.num_id_mat=m.num_id_mat
+							AND p.num_id_cli=?
 							')or die(print_r($bdd->errorInfo()));
 							
-		$reponse->execute();
+		$reponse->execute(array($_GET['id_cli']));
 	?>   
 	
 <h2> Liste de tous les materiels contractables:</h2>

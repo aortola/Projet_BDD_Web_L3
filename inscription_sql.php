@@ -23,6 +23,10 @@
 					$verification = $bdd->prepare("SELECT * FROM codes_membres WHERE code_membre=?") or die(print_r($bdd->errorInfo()));
 					$verification->execute(array(($_POST['code_membre'])));
 					if($donnees = $verification->fetch()){
+						
+							$suppression= $bdd->prepare("DELETE FROM codes_membres WHERE code_membre=?") or die(print_r($bdd->errorInfo()));
+							$suppression->execute(array(($donnees['code_membre'])));
+					
 						echo $donnees['droits'];
 						if($donnees['droits']=='admin'){
 							$isAdmin='oui';

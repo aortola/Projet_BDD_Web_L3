@@ -84,6 +84,14 @@ FOREIGN KEY (num_id_cont) REFERENCES contrat(num_id_cont),
 FOREIGN KEY (num_id_cli) REFERENCES client(num_id_cli)
 );
 
+CREATE TABLE client_possede_materiel(
+num_id_mat INT NOT NULL,
+num_id_cli INT NOT NULL,
+PRIMARY KEY (num_id_mat, num_id_cli),
+FOREIGN KEY (num_id_mat) REFERENCES materiel(num_id_mat),
+FOREIGN KEY (num_id_cli) REFERENCES client(num_id_cli)
+);
+
 CREATE TABLE intervention(
 num_id_incid INT NOT NULL,
 num_id_memb_perso INT NOT NULL,
@@ -125,6 +133,9 @@ INSERT INTO contrat VALUES('','2013-04-21',null,'actif',null,'15000.57');
 INSERT INTO contrat_couvre_materiel VALUES('1','1');
 
 INSERT INTO client_signe_contrat VALUES('1','1');
+
+INSERT INTO client_possede_materiel VALUES('1','1');
+INSERT INTO client_possede_materiel VALUES('2','1');
 
 INSERT INTO intervention VALUES('1','1','1','Surchauffe interne -> Changement carte mère + ventilo','00:20:40','intermediaire');
 
